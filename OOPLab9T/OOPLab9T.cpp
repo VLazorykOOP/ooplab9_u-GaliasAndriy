@@ -147,7 +147,7 @@ private:
 
     int client_code;
     vector<Record> data;
-    map<int, Record*, greater<int>> by_year;
+    map<int, Record*, less<int>> by_year;
 
 public:
     FitnessCenterData(int k) : client_code(k) {}
@@ -190,8 +190,8 @@ public:
         }
         else {
             // using methods rbegin() and rend() give us an opportunity to sort a map ascendant order
-            for (auto it = by_year.rbegin(); it != by_year.rend(); ++it) { // rbegin() - reversed begin (end) 
-                Record* each = it->second;
+            for (auto& it : by_year) { // rbegin() - reversed begin (end) 
+                Record* each = it.second;
                 cout << " | Year: " << each->year << " | Month: " << each->month << " | Duration(hs): " 
                     << each->duration << " | " << endl;
                 cout << "------------------------------------------------" << endl;
